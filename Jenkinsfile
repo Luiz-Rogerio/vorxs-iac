@@ -3,7 +3,7 @@ agent any
   stages {
     stage('fetch_latest_code') {
       steps {
-        git url: 'git@sua-url-do-git', branch: 'main'
+        git url: 'https://github.com/Luiz-Rogerio/vorxs-iac.git', branch: 'main'
       }
     }
 
@@ -19,7 +19,7 @@ agent any
     stage('Approval') {
       steps {
         script {
-          def userInput = input(id: 'confirm', message: 'Deseja realizar um ' + params.TF_OPTION +  ' na Infraestrutura?', parameters: [ [$class: 'BooleanParameterDefinition', defaultValue: false, description: 'Acao ' + params.TF_OPTION + ' Terraform', name: 'confirm'] ])
+          def userInput = input(id: 'confirm', message: 'Deseja realizar alteracoes na Infraestrutura?', parameters: [ [$class: 'BooleanParameterDefinition', defaultValue: false, description: 'Apply no Terraform', name: 'Confirmar'] ])
         }
       }
     }
